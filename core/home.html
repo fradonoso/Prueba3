@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Pagina Web con Django</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src='https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js'></script>
+</head>
+
+<body>
+
+    {%load static %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#"><img src="{% static 'core/img/logo.png' %}" alt="Logo" width="40px"
+                height="40px"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collpase" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'home' %}">Lista Mascotas<span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'form_mascota' %}">Agregar</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <hr class="my-5" />
+
+    <h1 class="mb-5 text-center"><strong>Lista Mascotas</strong></h1>
+
+    <div class="container">
+        <div class="row">
+        </div>
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Especie</th>
+                        <th scope="col">Raza</th>
+                        <th scope="col">Dueño</th>
+                        <th scope="col">Numero de contacto</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for a in mascota %}
+                    <tr>
+                        <td>{{a.idMascota}}</td>
+                        <td>{{a.nombreMascota}}</td>
+                        <td>{{a.especieMascota}}</td>
+                        <td>{{a.razaMascota}}</td>
+                        <td>{{a.dueño}}</td>
+                        <td>{{a.numeroContacto}}</td>
+                        <td><a href="{% url 'form_mod_mascota' a.idMascota %}">Modificar</a></td>
+                        <td><a href="{% url 'form_del_mascota' a.idMascota %}">Eliminar</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <hr class="my-5" />
+
+    <!--Footer-->
+    <div class="jumbotron text-center" style="margin-bottom:0">
+        <h3>Clinica Veterinaria "Sanos por Siempre"</h3>
+    </div>
+</body>
+
+</body>
